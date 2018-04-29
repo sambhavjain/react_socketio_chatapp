@@ -6,6 +6,10 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({
 });
 module.exports = {
     entry: path.join(__dirname, "client/index.js"),
+    output: {
+        path: path.join(__dirname, "/dist/"),
+        filename: "bundle.js"
+    },
     module: {
         rules: [
             {
@@ -21,7 +25,14 @@ module.exports = {
     },
     plugins: [htmlWebpackPlugin],
     resolve: {
-        extensions: [".js", ".jsx"]
+        alias: {
+          css        : 'client/css',
+          actions    : 'client/js/actions',
+          components : 'client/js/components',
+          reducers   : 'client/js/reducers',
+          store      : 'client/js/store',
+        },
+        extensions: [".js", ".jsx", ".css"]
     },
     devServer: {
         port: 3001
