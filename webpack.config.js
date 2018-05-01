@@ -41,9 +41,9 @@ module.exports = {
     new UglifyJsPlugin({
       uglifyOptions: {
         parallel: true,
-        warning: false,
+        warning: true,
         compress: {
-          drop_console: true
+          drop_console: false
         }
       }
     })
