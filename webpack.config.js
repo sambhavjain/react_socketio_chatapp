@@ -7,25 +7,26 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({
     filename: "./index.html"
 });
 module.exports = {
-  entry:['webpack-dev-server/client?http://0.0.0.0:3001', // WebpackDevServer host and port
-          'webpack/hot/only-dev-server', 
-          path.join(__dirname, "client/index.js")
-        ],
+  entry:[
+    'webpack-dev-server/client?http://0.0.0.0:3001', // WebpackDevServer host and port
+    'webpack/hot/only-dev-server', 
+    path.join(__dirname, "client/index.js")
+  ],
   output: {
     path: path.join(__dirname, "/dist/"),
     filename: "bundle.js"
   },
   module: {
     rules: [
-        {
-            test: /\.(js|jsx)$/,
-            use: "babel-loader",
-            exclude: /node_modules/
-        },
-        {
-            test: /\.css$/,
-            use: ["style-loader", "css-loader"]
-        }
+      {
+        test: /\.(js|jsx)$/,
+        use: "babel-loader",
+        exclude: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"]
+      }
     ]
   },
   plugins: [  
@@ -35,8 +36,17 @@ module.exports = {
         'NODE_ENV': JSON.stringify('production')
       }
     }),
+    new webpack.optimize.SplitChunksPlugin(),
     new webpack.HotModuleReplacementPlugin(), //For hot reloading
-    new UglifyJsPlugin()
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        parallel: true,
+        warning: false,
+        compress: {
+          drop_console: true
+        }
+      }
+    })
   ],
   resolve: {
     alias: {
