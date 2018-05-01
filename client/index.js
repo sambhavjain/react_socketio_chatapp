@@ -1,7 +1,12 @@
+import 'react-hot-loader/patch';
 import React from 'react';
-import { render} from 'react-dom';
-import Main from './js/components/main';
-const App = () => (
-  <Main />
+import { render } from 'react-dom';
+import Root from 'components/Root'
+import { AppContainer } from 'react-hot-loader';
+
+render(
+  <AppContainer>
+    <Root />
+  </AppContainer>,
+  document.getElementById('root')
 );
-render(<App />, document.getElementById("root"));
