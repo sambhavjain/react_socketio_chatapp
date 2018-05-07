@@ -46,10 +46,10 @@ export default class LoginScreen extends Component {
       this.setState({
         loginScreen : loginScreen,
         loginMessage: loginMessage,
-        buttonLabel : 'Register'
+        buttonLabel : 'Register',
+        isLogin     : true
       })
     }
-    
   }
 
   render() {
